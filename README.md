@@ -9,7 +9,7 @@ This is an AndroidStudio rebuild of google SDK sample NotePad
 #### 6.更改编辑框页面背景
 
 ### 二.代码实现
-####  1.运用TextWatcher 实时监听EditText搜索框里输入内容的变化 public void onTextChanged(CharSequence charSequence, int i, int i1, #### int i2)，实现了实时搜索
+####  1.运用TextWatcher 实时监听EditText搜索框里输入内容的变化 public void onTextChanged(CharSequence charSequence, int i, int i1, int i2)，实现了实时搜索
 ####  2.运用sharedPreferences保存和读取主页面背景颜色，实现对背景色的修改
 ####  3.运用Spinner组件实现分类功能NotePad.Notes.spinner=(Spinner)findViewById(R.id.spinner);
 ####  4.修改显示时间格式SimpleDateFormat simpleFormatter=new SimpleDateFormat("yyyy/MM/dd HH:mm:ss")
