@@ -11,26 +11,7 @@ This is an AndroidStudio rebuild of google SDK sample NotePad
 #### 6.更改编辑框页面背景
 
 ### 二.代码实现
-####  1.运用TextWatcher 实时监听EditText搜索框里输入内容的变化 public void onTextChanged(CharSequence charSequence, int i, int i1, int i2)，实现了实时搜索
-//实时监听EditText里输入内容的变化
-        TextWatcher textWatcher=new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2)
-            {
-                search();
-            }
-            @Override
-            public void afterTextChanged(Editable editable) {
-
-            }
-        };
-        editText.addTextChangedListener(textWatcher);
-        
+####  1.运用TextWatcher 实时监听EditText搜索框里输入内容的变化 public void onTextChanged(CharSequence charSequence, int i, int i1, int i2)，实现了实时搜索        
 //获取editText搜索框中的内容  
 Cursor cursor = managedQuery(
                 getIntent().getData(),            
