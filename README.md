@@ -1,8 +1,10 @@
 # NotePad
 This is an AndroidStudio rebuild of google SDK sample NotePad
 ### 一.实现功能如下：
+### 基础功能
 #### 1.NoteList中显示条目增加时间戳显示
 #### 2.添加笔记查询功能（根据标题查询）
+### 附加功能
 #### 3.UI美化
 #### 4.更改记事本主页面的背景
 #### 5.笔记分类
@@ -10,9 +12,33 @@ This is an AndroidStudio rebuild of google SDK sample NotePad
 
 ### 二.代码实现
 ####  1.运用TextWatcher 实时监听EditText搜索框里输入内容的变化 public void onTextChanged(CharSequence charSequence, int i, int i1, int i2)，实现了实时搜索
+Cursor cursor = managedQuery(
+                getIntent().getData(),            
+                PROJECTION,
+                //获取editText搜索框中的内容                                           
+                NotePad.Notes.COLUMN_NAME_TITLE + "  like  ?",                             
+                new  String[]{editText.getText().toString()+"%" },                           
+                NotePad.Notes.DEFAULT_SORT_ORDER  
+        );
 ####  2.运用sharedPreferences保存和读取主页面背景颜色，实现对背景色的修改
+//创建一个sharedPreferences,保存在文件名为Color的文件中
+sharedPreferences=getSharedPreferences("Color",MODE_ENABLE_WRITE_AHEAD_LOGGING);
+//初始化sharedPreferences
+//SharedPreferences.Editor editor=sharedPreferences.edit();
+//editor.putInt("name",123);
+color=sharedPreferences.getInt("color",Color.WHITE);
+
 ####  3.运用Spinner组件实现分类功能NotePad.Notes.spinner=(Spinner)findViewById(R.id.spinner);
+//运用Spinner组件
+NotePad.Notes.spinner=(Spinner)findViewById(R.id.spinner);
+String arr[]={"全部","学习","工作","其他"};
+ArrayAdapter<String> adapter=new ArrayAdapter<String>(this,android.R.layout.simple_list_item_multiple_choice,arr);
+NotePad.Notes.spinner.setAdapter(adapter);
+mCursor.moveToFirst();
+NotePad.Notes.spinner.setSelection(mCursor.getInt(4));
+
 ####  4.修改显示时间格式SimpleDateFormat simpleFormatter=new SimpleDateFormat("yyyy/MM/dd HH:mm:ss")
+
 ####  具体改动参看源码
 
 ### 三.功能演示
