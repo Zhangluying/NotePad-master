@@ -12,20 +12,37 @@ This is an AndroidStudio rebuild of google SDK sample NotePad
 
 ### 二.代码实现
 ####  1.运用TextWatcher 实时监听EditText搜索框里输入内容的变化 public void onTextChanged(CharSequence charSequence, int i, int i1, int i2)，实现了实时搜索
+//实时监听EditText里输入内容的变化
+        TextWatcher textWatcher=new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2)
+            {
+                search();
+            }
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        };
+        editText.addTextChangedListener(textWatcher);
+        
+//获取editText搜索框中的内容  
 Cursor cursor = managedQuery(
                 getIntent().getData(),            
-                PROJECTION,
-                //获取editText搜索框中的内容                                           
+                PROJECTION,                                          
                 NotePad.Notes.COLUMN_NAME_TITLE + "  like  ?",                             
                 new  String[]{editText.getText().toString()+"%" },                           
                 NotePad.Notes.DEFAULT_SORT_ORDER  
-        );
+
 ####  2.运用sharedPreferences保存和读取主页面背景颜色，实现对背景色的修改
 //创建一个sharedPreferences,保存在文件名为Color的文件中
 sharedPreferences=getSharedPreferences("Color",MODE_ENABLE_WRITE_AHEAD_LOGGING);
 //初始化sharedPreferences
-//SharedPreferences.Editor editor=sharedPreferences.edit();
-//editor.putInt("name",123);
 color=sharedPreferences.getInt("color",Color.WHITE);
 
 ####  3.运用Spinner组件实现分类功能NotePad.Notes.spinner=(Spinner)findViewById(R.id.spinner);
